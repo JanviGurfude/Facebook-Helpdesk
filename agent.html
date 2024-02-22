@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Set background color to white */
+            display: flex;
+            flex-direction: column; /* Stack the columns vertically */
+            height: 100vh; /* Make the body take up the full height of the viewport */
+        }
+        .conversation-container {
+            display: flex; /* Use flexbox to layout the conversation list, thread, and profile horizontally */
+            flex: 1; /* Make the conversation container take up the remaining space */
+            border-bottom: 1px solid #000000; /* Add thin black border at the bottom */
+        }
+        .conversation-list {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-right: 1px solid #000000; /* Add thin black border on the right */
+            position: relative;
+        }
+        .conversation-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10px; /* Adjust the position of the blue strip */
+            width: 10px; /* Width of the blue strip */
+            height: 100%;
+            background-color: #007bff; /* Blue color for the strip */
+        }
+        .conversation-thread {
+            flex: 2;
+            padding: 20px;
+            background-color: #e0e0e0; /* Slightly darker gray background color for the conversation thread */
+            border-right: 1px solid #000000; /* Add thin black border on the right */
+            overflow-y: auto; /* Enable vertical scrolling for long messages */
+            position: relative; /* Position relative for absolute positioning of message box */
+        }
+        .customer-profile {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-image {
+            width: 100px; /* Adjust width of the profile image */
+            height: 100px; /* Adjust height of the profile image */
+            border-radius: 50%; /* Make the profile image round */
+            margin-bottom: 10px; /* Add some space below the profile image */
+        }
+        .status-symbol {
+            margin-top: 5px; /* Add margin between profile name and status symbol */
+        }
+        .buttons-container {
+            display: flex; /* Display buttons side by side */
+            margin-top: 10px; /* Add margin above the buttons */
+        }
+        .button {
+            padding: 5px 10px; /* Adjust button padding */
+            margin-right: 10px; /* Add some space between buttons */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button.call {
+            background-color: #007bff; /* Blue color for the call button */
+            color: #ffffff; /* White text color */
+        }
+        .button.profile {
+            background-color: #f0f0f0; /* Light gray color for the profile button */
+        }
+        /* Add CSS styling for conversation list items, conversation thread, and customer profile */
+        .customer-details {
+            margin-top: 20px; /* Add margin above the customer details section */
+            background-color: #e7f0ff; /* Light blue color for the customer details section */
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .customer-details h3 {
+            color: #000000; /* Black color for the heading */
+        }
+        .customer-details-content {
+            background-color: #ffffff; /* White color for the content background */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .customer-details-content p {
+            margin: 5px 0; /* Add margin to paragraphs */
+        }
+        .blue-text {
+            color: #007bff; /* Blue color for the text */
+            cursor: pointer;
+        }
+        .bold {
+            font-weight: bold; /* Make the text bold */
+        }
+        .message-box {
+            background-color: #f0f0f0; /* Light gray color for the message box */
+            padding: 10px; /* Add padding to the message box */
+            border-radius: 5px; /* Add border radius to the message box */
+            margin-top: 10px; /* Add margin to separate the message box from the conversation thread */
+        }
+        .message-box textarea {
+            width: calc(100% - 20px); /* Set the width of the textarea to fit the message box */
+            padding: 5px; /* Add padding to the textarea */
+            border: none; /* Remove border from the textarea */
+            border-radius: 5px; /* Add border radius to the textarea */
+            resize: vertical; /* Allow vertical resizing of the textarea */
+        }
+        .message-box button {
+            background-color: #007bff; /* Blue color for the send button */
+            color: #ffffff; /* White text color */
+            border: none; /* Remove border from the button */
+            border-radius: 5px; /* Add border radius to the button */
+            padding: 5px 10px; /* Add padding to the button */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+        .message {
+            background-color: #ffffff; /* White color for the message bubble */
+            padding: 10px; /* Add padding to the message bubble */
+            border-radius: 10px; /* Add border radius to the message bubble */
+            margin-bottom: 10px; /* Add margin to separate messages */
+        }
+        .agent-message {
+            align-self: flex-start; /* Align agent messages to the left */
+        }
+        .customer-message {
+            align-self: flex-end; /* Align customer messages to the right */
+        }
+        .message-details {
+            font-size: 12px; /* Set font size for message details */
+            color: #808080; /* Set color for message details */
+        }
+    </style>
+</head>
+<body>
+    <div class="conversation-container">
+        <div class="conversation-list">
+            <!-- Conversation List -->
+            <h2>Conversations</h2>
+            <!-- Display list of conversations here -->
+            <ul>
+                <li>Conversation 1</li>
+                <li>Conversation 2</li>
+                <!-- Add more conversation items as needed -->
+            </ul>
+        </div>
+        <div class="conversation-thread">
+            <!-- Amit RG (Agent Name) -->
+            <h2 class="bold">Amit RG</h2> <!-- Bold font for agent name -->
+            <!-- Display conversation thread here when a conversation is selected -->
+            <div>
+                <!-- Messages between agent and customer -->
+                <div class="message agent-message"> <!-- Agent message -->
+                    <p>Hello Amit!</p> <!-- Message content -->
+                    <p class="message-details bold">Richard Panel - Mar 05, 2:22 AM</p> <!-- Message details -->
+                </div>
+                <div class="message customer-message"> <!-- Customer message -->
+                    <p>Hi Richard!</p> <!-- Message content -->
+                    <p class="message-details bold">Amit RG - Mar 05, 2:25 AM</p> <!-- Message details -->
+                </div>
+                <!-- Add more messages as needed -->
+            </div>
+            <div class="message-box">
+                <!-- Message Box -->
+                <textarea rows="1" placeholder="Type your message here..."></textarea> <!-- Textarea for typing message -->
+                <button>Send</button> <!-- Button to send the message -->
+            </div>
+        </div>
+        <div class="customer-profile">
+            <!-- Customer Profile -->
+            <h2>Richard Panel</h2> <!-- Agent name -->
+            <!-- Display agent profile information here -->
+            <img class="profile-image" src="agent_profile.jpg" alt="Agent Profile Picture">
+            <!-- Add more agent profile details as needed -->
+            <!-- Status symbol for online status -->
+            <div class="status-symbol">Online</div>
+            <!-- Buttons for call and profile -->
+            <div class="buttons-container">
+                <button class="button call">Call</button>
+                <button class="button profile">Profile</button>
+            </div>
+            <!-- Customer Details Section -->
+            <div class="customer-details">
+                <h3>Customer Details</h3>
+                <div class="customer-details-content">
+                    <!-- Display customer details here -->
+                    <p><strong>Email:</strong> amit@example.com</p> <!-- Added email -->
+                    <p><strong>First Name:</strong> Amit</p>
+                    <p><strong>Last Name:</strong> RG</p>
+                </div>
+                <p class="blue-text">View more details</p> <!-- Blue text link for viewing more details -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
